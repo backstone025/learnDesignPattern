@@ -1,20 +1,23 @@
 package org.example;
 
-import org.example.ExampleOfObserverPattern.CurrentConditionDisplay;
-import org.example.ExampleOfObserverPattern.ForecastDisplay;
-import org.example.ExampleOfObserverPattern.StatisticsDisplay;
-import org.example.ExampleOfObserverPattern.WeatherData;
+import org.example.ExampleOfDecoratorPattern.coffeeOrderSystem.*;
 
 public class Main {
     public static void main(String[] args) {
-        WeatherData weatherData = new WeatherData();
+        Beverage beverage = new Espresso();
+        System.out.println(beverage.getDescription() + "$" + beverage.cost());
 
-        CurrentConditionDisplay currentConditionDisplay = new CurrentConditionDisplay(weatherData);
-        StatisticsDisplay statisticsDisplay = new StatisticsDisplay(weatherData);
-        ForecastDisplay forecastDisplay = new ForecastDisplay(weatherData);
+        Beverage beverage1 = new DarkRoast();
+        beverage1 = new Mocha(beverage1);
+        beverage1 = new Mocha(beverage1);
+        beverage1 = new Whip(beverage1);
+        System.out.println(beverage1.getDescription() + "$" + beverage1.cost());
 
-        weatherData.setMesurements(80, 65, 30.4f);
-        weatherData.setMesurements(82, 70, 29.2f);
-        weatherData.setMesurements(78,90,29.2f);
+        Beverage beverage2 = new HouseBlend();
+        beverage2 = new Soy(beverage2);
+        beverage2 = new Mocha(beverage2);
+        beverage2 = new Whip(beverage2);
+        System.out.println(beverage2.getDescription() + "$" + beverage2.cost());
+
     }
 }
