@@ -1,19 +1,19 @@
 package org.example;
 
-import org.example.ExampleOfDecoratorPattern.JavaIODecorator.*;
+import org.example.ExampleOfFactoryPattern.Pizza;
 import org.example.ExampleOfFactoryPattern.PizzaStore;
-import org.example.ExampleOfFactoryPattern.SimplePizzaFactory;
-
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import org.example.ExampleOfFactoryPattern.SortOfStore.ChicagoPizzaStore;
+import org.example.ExampleOfFactoryPattern.SortOfStore.NYPizzaStore;
 
 public class Main {
     public static void main(String[] args) {
-        SimplePizzaFactory factory = new SimplePizzaFactory();
-        PizzaStore pizzaStore = new PizzaStore(factory);
+        PizzaStore nyStore = new NYPizzaStore();
+        PizzaStore chicagoStore = new ChicagoPizzaStore();
 
-        pizzaStore.orderPizza("cheeze");
+         Pizza pizza = nyStore.orderPizza("cheese");
+         System.out.println("에단이 주문한" + pizza.getName()+"\n");
+
+         pizza = chicagoStore.orderPizza("cheese");
+         System.out.println("조엘이 주문한" + pizza.getName()+"\n");
     }
 }
