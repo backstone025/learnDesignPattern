@@ -1,6 +1,6 @@
-package org.example.ExampleOfFactoryPattern.SortOfPizza;
+package org.example.ExampleOfFactoryPattern.FactoryMethodPattern.SortOfPizza;
 
-import org.example.ExampleOfFactoryPattern.Pizza;
+import org.example.ExampleOfFactoryPattern.FactoryMethodPattern.Pizza;
 
 public class ChicagoSytleCheesePizza extends Pizza {
     public ChicagoSytleCheesePizza() {

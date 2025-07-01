@@ -1,4 +1,4 @@
-package org.example.ExampleOfFactoryPattern;
+package org.example.ExampleOfFactoryPattern.FactoryMethodPattern;
 
 import java.util.ArrayList;
 import java.util.List;

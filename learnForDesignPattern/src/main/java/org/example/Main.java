@@ -1,9 +1,9 @@
 package org.example;
 
-import org.example.ExampleOfFactoryPattern.Pizza;
-import org.example.ExampleOfFactoryPattern.PizzaStore;
-import org.example.ExampleOfFactoryPattern.SortOfStore.ChicagoPizzaStore;
-import org.example.ExampleOfFactoryPattern.SortOfStore.NYPizzaStore;
+import org.example.ExampleOfFactoryPattern.AbstractFactoryPattern.Pizza;
+import org.example.ExampleOfFactoryPattern.AbstractFactoryPattern.PizzaStore;
+import org.example.ExampleOfFactoryPattern.AbstractFactoryPattern.NYPizzaStore;
+import org.example.ExampleOfFactoryPattern.AbstractFactoryPattern.ChicagoPizzaStore;
 
 public class Main {
     public static void main(String[] args) {

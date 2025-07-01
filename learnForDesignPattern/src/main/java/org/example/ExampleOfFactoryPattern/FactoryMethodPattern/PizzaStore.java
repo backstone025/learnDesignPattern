@@ -1,4 +1,6 @@
-package org.example.ExampleOfFactoryPattern;
+package org.example.ExampleOfFactoryPattern.FactoryMethodPattern;
+
+import org.example.ExampleOfFactoryPattern.FactoryMethodPattern.Pizza;
 
 public abstract class PizzaStore {
 
