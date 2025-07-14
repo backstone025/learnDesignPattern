@@ -1,31 +1,34 @@
 package org.example;
 
-import org.example.ExampleOfCommandPattern.CommandPattern.CeilingFan;
-import org.example.ExampleOfCommandPattern.CommandPattern.Command.CeilingFanHighCommand;
-import org.example.ExampleOfCommandPattern.CommandPattern.Command.CeilingFanMediumCommand;
-import org.example.ExampleOfCommandPattern.CommandPattern.Command.CeilingFanOFFCommand;
-import org.example.ExampleOfCommandPattern.CommandPattern.RemoteControl;
+import org.example.ExampleOfCommandPattern.CommandPattern.*;
+import org.example.ExampleOfCommandPattern.CommandPattern.Command.*;
 
 public class Main {
     public static void main(String[] args) {
         RemoteControl remoteControl = new RemoteControl();
 
-        CeilingFan ceilingFan = new CeilingFan("로비");
+        Light light = new Light("거실");
+        TV tv = new TV("거실");
+        Stereo stereo = new Stereo("거실");
+        Hottub hottub = new Hottub("");
 
-        CeilingFanHighCommand ceilingFanHigh = new CeilingFanHighCommand(ceilingFan);
-        CeilingFanMediumCommand ceilingFanMedium = new CeilingFanMediumCommand(ceilingFan);
-        CeilingFanOFFCommand ceilingFanOFF = new CeilingFanOFFCommand(ceilingFan);
+        LightOnCommand lightOn = new LightOnCommand(light);
+        LightOffCommand lightOff = new LightOffCommand(light);
+        TVOnCommand tvOn = new TVOnCommand(tv);
+        TVOffCommand tvOff = new TVOffCommand(tv);
+        StereoOnWithCDCommand stereoOnWithCD = new StereoOnWithCDCommand(stereo);
+        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
+        HottubOnCommand hottubOn = new HottubOnCommand(hottub);
+        HottubOffCommand hottubOff = new HottubOffCommand(hottub);
 
-        remoteControl.setCommand(0, ceilingFanMedium, ceilingFanOFF);
-        remoteControl.setCommand(1, ceilingFanHigh, ceilingFanOFF);
+        MacroCommand macroOnCommand = new MacroCommand(new Command[]{lightOn, tvOn, stereoOnWithCD, hottubOn});
+        MacroCommand macroOffCommand = new MacroCommand(new Command[]{lightOff, tvOff, stereoOff, hottubOff});
+
+        remoteControl.setCommand(0, macroOnCommand, macroOffCommand);
 
         // remote control 작동
-        remoteControl.onButtonWasPressed(0);
-        remoteControl.offButtonWasPressed(0);
         System.out.println(remoteControl);
-        remoteControl.undoButtonWasPushed();
-
-        remoteControl.onButtonWasPressed(1);
+        remoteControl.onButtonWasPressed(0);
         System.out.println(remoteControl);
         remoteControl.undoButtonWasPushed();
     }
