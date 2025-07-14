@@ -15,21 +15,26 @@ public class Main {
         GarageDoor garageDoor = new GarageDoor("본관 차고");
         Stereo stereo = new Stereo("휴게실");
 
-        LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight);
-        LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
-        LightOnCommand cafeteriaLightOn = new LightOnCommand(cafeteriaLight);
-        LightOffCommand cafeteriaLightOff = new LightOffCommand(cafeteriaLight);
+        remoteControl.setCommand(0, ()->livingRoomLight.on(), ()->livingRoomLight.off());
+        remoteControl.setCommand(1, ()->cafeteriaLight.on(), ()-> cafeteriaLight.off());
+        remoteControl.setCommand(2, ()->garageDoor.up(), ()->garageDoor.down());
+        remoteControl.setCommand(3,()-> stereo.on(), ()-> stereo.off());
 
-        GarageDoorUpCommand garageDoorUp = new GarageDoorUpCommand(garageDoor);
-        GarageDoorDownCommand garageDoorDown = new GarageDoorDownCommand(garageDoor);
-
-        StereoOnWithCDCommand stereoOnWithCD = new StereoOnWithCDCommand(stereo);
-        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
-
-        remoteControl.setCommand(0, livingRoomLightOn, livingRoomLightOff);
-        remoteControl.setCommand(1, cafeteriaLightOn, cafeteriaLightOff);
-        remoteControl.setCommand(2, garageDoorUp, garageDoorDown);
-        remoteControl.setCommand(3, stereoOnWithCD, stereoOff);
+//        LightOnCommand livingRoomLightOn = new LightOnCommand(livingRoomLight);
+//        LightOffCommand livingRoomLightOff = new LightOffCommand(livingRoomLight);
+//        LightOnCommand cafeteriaLightOn = new LightOnCommand(cafeteriaLight);
+//        LightOffCommand cafeteriaLightOff = new LightOffCommand(cafeteriaLight);
+//
+//        GarageDoorUpCommand garageDoorUp = new GarageDoorUpCommand(garageDoor);
+//        GarageDoorDownCommand garageDoorDown = new GarageDoorDownCommand(garageDoor);
+//
+//        StereoOnWithCDCommand stereoOnWithCD = new StereoOnWithCDCommand(stereo);
+//        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
+//
+//        remoteControl.setCommand(0, livingRoomLightOn, livingRoomLightOff);
+//        remoteControl.setCommand(1, cafeteriaLightOn, cafeteriaLightOff);
+//        remoteControl.setCommand(2, garageDoorUp, garageDoorDown);
+//        remoteControl.setCommand(3, stereoOnWithCD, stereoOff);
 
         System.out.println(remoteControl);
 
