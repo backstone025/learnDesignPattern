@@ -1,35 +1,37 @@
 package org.example;
 
-import org.example.ExampleOfCommandPattern.CommandPattern.*;
-import org.example.ExampleOfCommandPattern.CommandPattern.Command.*;
+import org.example.ExampleOfAdapterPattern.Duck.*;
 
 public class Main {
     public static void main(String[] args) {
-        RemoteControl remoteControl = new RemoteControl();
+        Duck duck = new MallarDuck();
 
-        Light light = new Light("거실");
-        TV tv = new TV("거실");
-        Stereo stereo = new Stereo("거실");
-        Hottub hottub = new Hottub("");
+        Turkey turkey = new WildTurkey();
+        // 변수를 Duck이 아닌 TurkeyAdpater로 선언해도 된다.
+        Duck turkeyAdapter = new TurkeyAdapter(turkey);
+        Turkey duckAdapter = new DuckAdapter(duck);
 
-        LightOnCommand lightOn = new LightOnCommand(light);
-        LightOffCommand lightOff = new LightOffCommand(light);
-        TVOnCommand tvOn = new TVOnCommand(tv);
-        TVOffCommand tvOff = new TVOffCommand(tv);
-        StereoOnWithCDCommand stereoOnWithCD = new StereoOnWithCDCommand(stereo);
-        StereoOffCommand stereoOff = new StereoOffCommand(stereo);
-        HottubOnCommand hottubOn = new HottubOnCommand(hottub);
-        HottubOffCommand hottubOff = new HottubOffCommand(hottub);
+        System.out.println("오리가 말하길");
+        testDuck(duck);
 
-        MacroCommand macroOnCommand = new MacroCommand(new Command[]{lightOn, tvOn, stereoOnWithCD, hottubOn});
-        MacroCommand macroOffCommand = new MacroCommand(new Command[]{lightOff, tvOff, stereoOff, hottubOff});
+        System.out.println("\n칠면조 어뎁터가 말하길");
+        testDuck(turkeyAdapter);
 
-        remoteControl.setCommand(0, macroOnCommand, macroOffCommand);
+        System.out.println("\n칠면조가 말하길");
+        testTurkey(turkey);
 
-        // remote control 작동
-        System.out.println(remoteControl);
-        remoteControl.onButtonWasPressed(0);
-        System.out.println(remoteControl);
-        remoteControl.undoButtonWasPushed();
+        System.out.println("\n오리 어뎁터가 말하길");
+        for (int i = 1; i < 10; i++){
+            System.out.println(i+"번째 :");
+            testTurkey(duckAdapter);
+        }
     }
+    static void testDuck(Duck duck){
+        duck.quack();
+        duck.fly();
+    }
+    static void testTurkey(Turkey turkey){
+        turkey.gobble();
+        turkey.fly();
+    };
 }
