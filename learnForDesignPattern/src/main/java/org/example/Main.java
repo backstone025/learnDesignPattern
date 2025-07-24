@@ -1,23 +1,18 @@
 package org.example;
 
+import org.example.ExampleOfTemplateMethodPattern.CaffeineBeverage.CaffeineBeverage;
 import org.example.ExampleOfTemplateMethodPattern.CaffeineBeverage.Coffee;
 import org.example.ExampleOfTemplateMethodPattern.CaffeineBeverage.Tea;
 
 public class Main {
     public static void main(String[] args) {
-        Coffee coffee = new Coffee();
-        Tea tea = new Tea();
+        CaffeineBeverage coffee = new Coffee();
+        CaffeineBeverage tea = new Tea();
 
-        System.out.println("- coffee recipe -");
-        coffee.boilWater();
-        coffee.brew();
-        coffee.pourInCup();
-        coffee.addCondiments();
+        System.out.println("- coffee order -");
+        coffee.prepareRecipe();
 
-        System.out.println("\n- tea recipe -");
-        tea.boilWater();
-        tea.brew();
-        tea.pourInCup();
-        tea.addCondiments();
+        System.out.println("\n- tea order -");
+        tea.prepareRecipe();
     }
 }
