@@ -1,10 +1,12 @@
 package org.example.ExampleOfIteratorPattern.MergedRestaurantSystem;
 
-public class Waiteress {
-    PancakeHouseMenu pancakeHouseMenu;
-    DinerMenu dinerMenu;
+import java.util.Iterator;
 
-    public Waiteress(PancakeHouseMenu pancakeHouseMenu, DinerMenu dinerMenu) {
+public class Waiteress {
+    Menu pancakeHouseMenu;
+    Menu dinerMenu;
+
+    public Waiteress(Menu pancakeHouseMenu, Menu dinerMenu) {
         this.pancakeHouseMenu = pancakeHouseMenu;
         this.dinerMenu = dinerMenu;
     }
@@ -19,7 +21,7 @@ public class Waiteress {
         printMenu(dinerIterator);
     }
 
-    private void printMenu(Iterator iterator) {
+    private void printMenu(Iterator<MenuItem> iterator) {
         while (iterator.hasNext()) {
             MenuItem menuItem = iterator.next();
             System.out.print(menuItem.getName() + ", ");
