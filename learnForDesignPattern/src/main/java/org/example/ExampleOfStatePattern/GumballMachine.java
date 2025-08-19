@@ -1,85 +1,86 @@
 package org.example.ExampleOfStatePattern;
 
 public class GumballMachine {
-    final static int SOLD_OUT = 0;
-    final static int NO_QURTER = 1;
-    final static int HAS_QUATER = 2;
-    final static int SOLD = 3;
 
-    int state = SOLD_OUT;
+    State soldOutState;
+    State noQuarterState;
+    State hasQuaterState;
+    State soldState;
+
+    State state;
     int count = 0;
 
-    public GumballMachine(int count) {
-        this.count = count;
-        if(count > 0){
-            state = NO_QURTER;
-        }
+    public GumballMachine(int numberGumballs) {
+        soldOutState = new SoldOutState(this);
+        noQuarterState = new NoQuaterState(this);
+        hasQuaterState = new HasQuaterState(this);
+        soldState = new SoldState(this);
+
+        this.count = numberGumballs;
+        if(numberGumballs > 0)
+            state = noQuarterState;
+        else state = soldState;
     }
 
     public void insertQuater(){
-        if(state == HAS_QUATER){
-            System.out.println("동전은 한 개만 넣어주세요.");
-        } else if (state == NO_QURTER) {
-            state = HAS_QUATER;
-            System.out.println("동전을 넣으셨습니다.");
-        } else if (state == SOLD_OUT) {
-            System.out.println("매진되었습니다. 다음 기회에 이용해 주세요.");
-        } else if (state == SOLD) {
-            System.out.println("알맹이를 보내고 있습니다.");
-        }
+        state.insertQuater();
     }
 
     public void ejectQuater(){
-        if(state == HAS_QUATER){
-            System.out.println("동전이 반환됩니다.");
-            state = NO_QURTER;
-        } else if (state == NO_QURTER) {
-            System.out.println("동전을 넣어 주세요.");
-        } else if (state == SOLD) {
-            System.out.println("이미 알맹이를 뽑으셨습니다.");
-        } else if (state == SOLD_OUT) {
-            System.out.println("동전을 넣지 않으셨습니다. 동전이 반환되지 않습니다.");
-        }
+        state.ejectQuater();
     }
 
     public void turnCrank(){
-        if(state == SOLD){
-            System.out.println("손잡이는 한 번만 들려 주세요.");
-        } else if (state == NO_QURTER) {
-            System.out.println("동전을 넣어 주세요");
-        } else if (state == SOLD_OUT) {
-            System.out.println("매진되었습니다.");
-        } else if (state == HAS_QUATER) {
-            System.out.println("손잡이를 돌리셨습니다.");
-            state = SOLD;
-            dispense();
-        }
-    }
-
-    public void dispense(){
-        if(state == SOLD){
-            System.out.println("알맹이를 내보내고 있습니다.");
-            count = count - 1;
-            if(count == 0){
-                System.out.println("더 이상 알맹이가 없습니다.");
-                state = SOLD_OUT;
-            }else {
-                state = NO_QURTER;
-            }
-        } else if (state == NO_QURTER) {
-            System.out.println("동전을 넣어 주세요");
-        } else if (state == SOLD_OUT) {
-            System.out.println("매진입니다.");
-        } else if (state == HAS_QUATER) {
-            System.out.println("알맹이를 내보낼 수 없습니다.");
-        }
+        state.turnCrank();
+        state.dispense();
     }
 
     @Override
     public String toString() {
-        String s = "\n주식회사 왕뽑기\n자바로 돌아가는 최신형 뽑기 기계\n남은 개수 : "+count;
-        if(state == SOLD_OUT)
-            return s+"\n매진";
-        else return s+"\n동전 투입 대기중\n";
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n주식회사 왕뽑기\n");
+        sb.append("자바로 돌아가는 최신형 뽑기 기회\n");
+        sb.append("남은 개수: ");
+        sb.append(count);
+        sb.append("개\n");
+        if(state.equals(soldOutState))
+            sb.append("매진\n");
+        else sb.append("동전 투입 대기중\n");
+        return sb.toString();
+    }
+
+    void releaseBall(){
+        System.out.println("알맹이를 내보내고 있습니다.");
+        if(count > 0){
+            count = count - 1;
+        }
+    }
+
+    void setState(State state) {
+        this.state = state;
+    }
+
+    void setCount(int count){
+        this.count = count;
+    }
+
+    public State getHasQuaterState(){
+        return hasQuaterState;
+    }
+
+    public State getSoldState() {
+        return soldState;
+    }
+
+    public State getSoldOutState() {
+        return soldOutState;
+    }
+
+    public State getNoQuarterState() {
+        return noQuarterState;
+    }
+
+    public int getCount() {
+        return count;
     }
 }
