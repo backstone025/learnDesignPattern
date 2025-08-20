@@ -1,6 +1,6 @@
 package org.example.ExampleOfStatePattern;
 
-public class SoldOutState implements State{
+public class SoldOutState implements State {
     GumballMachine gumballMachine;
 
     public SoldOutState(GumballMachine gumballMachine) {

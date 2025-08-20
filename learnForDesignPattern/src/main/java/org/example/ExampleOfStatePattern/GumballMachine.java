@@ -6,6 +6,7 @@ public class GumballMachine {
     State noQuarterState;
     State hasQuaterState;
     State soldState;
+    State winnerState;
 
     State state;
     int count = 0;
@@ -15,22 +16,23 @@ public class GumballMachine {
         noQuarterState = new NoQuaterState(this);
         hasQuaterState = new HasQuaterState(this);
         soldState = new SoldState(this);
+        winnerState = new WinnerState(this);
 
         this.count = numberGumballs;
-        if(numberGumballs > 0)
+        if (numberGumballs > 0)
             state = noQuarterState;
         else state = soldState;
     }
 
-    public void insertQuater(){
+    public void insertQuater() {
         state.insertQuater();
     }
 
-    public void ejectQuater(){
+    public void ejectQuater() {
         state.ejectQuater();
     }
 
-    public void turnCrank(){
+    public void turnCrank() {
         state.turnCrank();
         state.dispense();
     }
@@ -43,15 +45,15 @@ public class GumballMachine {
         sb.append("남은 개수: ");
         sb.append(count);
         sb.append("개\n");
-        if(state.equals(soldOutState))
+        if (state.equals(soldOutState))
             sb.append("매진\n");
         else sb.append("동전 투입 대기중\n");
         return sb.toString();
     }
 
-    void releaseBall(){
+    void releaseBall() {
         System.out.println("알맹이를 내보내고 있습니다.");
-        if(count > 0){
+        if (count > 0) {
             count = count - 1;
         }
     }
@@ -60,11 +62,11 @@ public class GumballMachine {
         this.state = state;
     }
 
-    void setCount(int count){
+    void setCount(int count) {
         this.count = count;
     }
 
-    public State getHasQuaterState(){
+    public State getHasQuaterState() {
         return hasQuaterState;
     }
 
@@ -78,6 +80,10 @@ public class GumballMachine {
 
     public State getNoQuarterState() {
         return noQuarterState;
+    }
+
+    public State getWinnerState() {
+        return winnerState;
     }
 
     public int getCount() {

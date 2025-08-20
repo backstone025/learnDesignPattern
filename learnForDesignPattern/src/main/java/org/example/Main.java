@@ -14,23 +14,6 @@ public class Main {
         System.out.println(gumballMachine);
 
         gumballMachine.insertQuater();
-        gumballMachine.ejectQuater();
-        gumballMachine.turnCrank();
-
-        System.out.println(gumballMachine);
-
-        gumballMachine.insertQuater();
-        gumballMachine.turnCrank();
-        gumballMachine.insertQuater();
-        gumballMachine.turnCrank();
-        gumballMachine.ejectQuater();
-
-        System.out.println(gumballMachine);
-
-        gumballMachine.insertQuater();
-        gumballMachine.insertQuater();
-        gumballMachine.turnCrank();
-        gumballMachine.insertQuater();
         gumballMachine.turnCrank();
         gumballMachine.insertQuater();
         gumballMachine.turnCrank();

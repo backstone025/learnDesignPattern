@@ -1,6 +1,6 @@
 package org.example.ExampleOfStatePattern;
 
-public class NoQuaterState implements State{
+public class NoQuaterState implements State {
     GumballMachine gumballMachine;
 
     public NoQuaterState(GumballMachine gumballMachine) {
