@@ -38,4 +38,9 @@ public class WinnerState implements State{
             }
         }
     }
+
+    @Override
+    public String toString() {
+        return "당첨 되었습니다!";
+    }
 }

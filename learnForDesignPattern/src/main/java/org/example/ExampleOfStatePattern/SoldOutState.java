@@ -26,4 +26,9 @@ public class SoldOutState implements State {
     public void dispense() {
         System.out.println();
     }
+
+    @Override
+    public String toString() {
+        return "알맹이 매진되었습니다.";
+    }
 }

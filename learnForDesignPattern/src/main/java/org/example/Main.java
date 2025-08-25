@@ -1,23 +1,22 @@
 package org.example;
 
-import org.example.ExampleOfStatePattern.GumballMachine;
+import org.example.ExampleOfProxyPattern.GumballMachine;
+import org.example.ExampleOfProxyPattern.GumballMonitor;
 
 public class Main {
     public static void main(String[] args) {
-        GumballMachine gumballMachine = new GumballMachine(5);
+        int count = 0;
 
-        System.out.println(gumballMachine);
+        if(args.length < 2){
+            System.out.println("GumballMachine <name> <inventory>");
+            System.exit(1);
+        }
 
-        gumballMachine.insertQuater();
-        gumballMachine.turnCrank();
+        count = Integer.parseInt(args[1]);
+        GumballMachine gumballMachine = new GumballMachine(args[0], count);
 
-        System.out.println(gumballMachine);
+        GumballMonitor monitor = new GumballMonitor(gumballMachine);
 
-        gumballMachine.insertQuater();
-        gumballMachine.turnCrank();
-        gumballMachine.insertQuater();
-        gumballMachine.turnCrank();
-
-        System.out.println(gumballMachine);
+        monitor.report();
     }
 }

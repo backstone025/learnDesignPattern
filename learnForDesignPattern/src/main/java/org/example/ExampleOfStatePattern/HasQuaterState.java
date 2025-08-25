@@ -35,4 +35,9 @@ public class HasQuaterState implements State {
     public void dispense() {
         System.out.println("알맹이를 내보낼 수 없습니다.");
     }
+
+    @Override
+    public String toString() {
+        return "동전이 두입되었습니다.";
+    }
 }

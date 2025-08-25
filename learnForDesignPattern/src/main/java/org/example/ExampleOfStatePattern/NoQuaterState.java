@@ -26,4 +26,9 @@ public class NoQuaterState implements State {
     @Override
     public void dispense() {
     }
+
+    @Override
+    public String toString() {
+        return "동전 투입 대기중";
+    }
 }
