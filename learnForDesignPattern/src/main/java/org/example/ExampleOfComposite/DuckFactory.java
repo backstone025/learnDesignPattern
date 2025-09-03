@@ -1,0 +1,28 @@
+package org.example.ExampleOfComposite;
+
+public class DuckFactory extends AbstractDuckFactory{
+    @Override
+    public Quackable createMallarDuck() {
+        return new MallardDuck();
+    }
+
+    @Override
+    public Quackable createRedheadDuck() {
+        return new RedheadDuck();
+    }
+
+    @Override
+    public Quackable createDuckCall() {
+        return new DuckCall();
+    }
+
+    @Override
+    public Quackable createRubberDuck() {
+        return new RuberDuck();
+    }
+
+    @Override
+    public Quackable createGooseDuck() {
+        return new GooseAdapter(new Goose());
+    }
+}
