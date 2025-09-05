@@ -1,4 +1,4 @@
-package org.example.ExampleOfComposite;
+package org.example.ExampleOfCompoundPattern;
 
 public class QuackCounter implements Quackable{
     Quackable duck;
@@ -16,5 +16,15 @@ public class QuackCounter implements Quackable{
 
     public static int getNumberOfDucks() {
         return numberOfDucks;
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        duck.registerObserver(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        duck.notifyObservers();
     }
 }

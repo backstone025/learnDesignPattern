@@ -1,5 +1,7 @@
 package org.example.ExampleOfCompositePattern;
 
+import org.example.ExampleOfCompositePattern.MenuComponent;
+
 import java.util.ArrayList;
 import java.util.List;
 
